@@ -1,0 +1,6 @@
+{
+    "require": {
+        "lagdo/xajax-core": "dev-master"
+    },
+    "minimum-stability": "dev"
+}
