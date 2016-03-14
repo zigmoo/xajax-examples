@@ -36,6 +36,7 @@ $xajax = new Xajax();
 	- set the javascript uri (location of xajax js files)
 */
 //$xajax->configure('debug', true);
+$xajax->configure('wrapperPrefix', 'Xajax');
 $xajax->configure('javascript URI', '/test/xajax/js');
 $xajax->configure('deferScriptGeneration', false);
 
@@ -145,9 +146,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			// call the setColor function on load
 			<?php $reqSetColor->printScript(); ?>;
 			// Call the HelloWorld class to populate the 2nd div
-			xajax_HelloWorld.sayHello(0);
+			XajaxHelloWorld.sayHello(0);
 			// call the HelloWorld->setColor() method on load
-			xajax_HelloWorld.setColor(xajax.$('colorselect2').value);
+			XajaxHelloWorld.setColor(xajax.$('colorselect2').value);
 		}
 		/* ]]> */
 	</script>
@@ -169,10 +170,10 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 	<div id="div2">&#160;</div>
 	<div>
-		<button onclick="xajax_HelloWorld.sayHello(0); return false;" >Click Me</button>
-		<button onclick="xajax_HelloWorld.sayHello(1); return false;" >CLICK ME</button>
+		<button onclick="XajaxHelloWorld.sayHello(0); return false;" >Click Me</button>
+		<button onclick="XajaxHelloWorld.sayHello(1); return false;" >CLICK ME</button>
 		<select id="colorselect2" name="colorselect2"
-			onchange="xajax_HelloWorld.setColor(xajax.$('colorselect2').value); return false;">
+			onchange="XajaxHelloWorld.setColor(xajax.$('colorselect2').value); return false;">
 			<option value="black" selected="selected">Black</option>
 			<option value="red">Red</option>
 			<option value="green">Green</option>
