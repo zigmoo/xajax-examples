@@ -9,5 +9,4 @@ This will install the `lagdo/xajax-core` package and its dependencies.
 
 Download the Xajax javascript files from `https://github.com/lagdo/xajax-js` and install on your web server.
 
-Before you can browse any example file, change the `javascript URI` parameter to the URL where
-you have installed the javascript files.
+Before you can browse any example file, change the `javascript URI` parameter to the URL to the javascript files.

@@ -35,10 +35,24 @@ $xajax = new Xajax();
 	- enable deubgging if desired
 	- set the javascript uri (location of xajax js files)
 */
-//$xajax->configure('debug', true);
+// $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'Xajax');
 $xajax->configure('javascript URI', '/test/xajax/js');
 $xajax->configure('deferScriptGeneration', false);
+
+/*
+ * Sets the following options on the Toastr library
+ * - toastr.options.closeButton = true;
+ * - toastr.options.closeMethod = 'fadeOut';
+ * - toastr.options.closeDuration = 300;
+ * - toastr.options.closeEasing = 'swing';
+*/
+$xajax->plugin('toastr')->setOptions(array(
+	'closeButton' => true,
+	'closeMethod' => 'fadeOut',
+	'closeDuration' => 300,
+	'closeEasing' => 'swing',
+));
 
 /*
 	Function: helloWorld
@@ -52,10 +66,10 @@ function helloWorld($isCaps)
 	else
 		$text = 'Hello World!';
 		
-	$objResponse = new Response();
-	$objResponse->assign('div1', 'innerHTML', $text);
+	$xResponse = new Response();
+	$xResponse->assign('div1', 'innerHTML', $text);
 	
-	return $objResponse;
+	return $xResponse;
 }
 
 /*
@@ -65,10 +79,10 @@ function helloWorld($isCaps)
 */
 function setColor($sColor)
 {
-	$objResponse = new Response();
-	$objResponse->assign('div1', 'style.color', $sColor);
+	$xResponse = new Response();
+	$xResponse->assign('div1', 'style.color', $sColor);
 	
-	return $objResponse;
+	return $xResponse;
 }
 
 class HelloWorld
@@ -80,18 +94,20 @@ class HelloWorld
 		else
 			$text = 'Hello World!';
 
-		$objResponse = new Response();
-		$objResponse->assign('div2', 'innerHTML', $text);
+		$xResponse = new Response();
+		$xResponse->assign('div2', 'innerHTML', $text);
+		$xResponse->toastr->success("div2 text is now $text");
 
-		return $objResponse;
+		return $xResponse;
 	}
 
 	public function setColor($sColor)
 	{
-		$objResponse = new Response();
-		$objResponse->assign('div2', 'style.color', $sColor);
+		$xResponse = new Response();
+		$xResponse->assign('div2', 'style.color', $sColor);
+		$xResponse->toastr->success("div2 color is now $sColor");
 		
-		return $objResponse;
+		return $xResponse;
 	}
 }
 
@@ -101,13 +117,8 @@ class HelloWorld
 	- <helloWorld>
 	- <setColor>
 */
-$reqHelloWorldMixed = $xajax->register(XAJAX_FUNCTION, 'helloWorld');
-$reqHelloWorldMixed->useSingleQuote();
-$reqHelloWorldMixed->setParameter(0, XAJAX_JS_VALUE, 0);
-
-$reqHelloWorldAllCaps = $xajax->register(XAJAX_FUNCTION, 'helloWorld');
-$reqHelloWorldAllCaps->useSingleQuote();
-$reqHelloWorldAllCaps->setParameter(0, XAJAX_JS_VALUE, 1);
+$reqHelloWorld = $xajax->register(XAJAX_FUNCTION, 'helloWorld');
+$reqHelloWorld->useSingleQuote();
 
 $reqSetColor = $xajax->register(XAJAX_FUNCTION, 'setColor');
 $reqSetColor->useSingleQuote();
@@ -128,21 +139,23 @@ $clsHelloWorld = $xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());
 */
 $xajax->processRequest();
 
-echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>xajax example</title>
+
+<title>xajax example</title>
+<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
 <?php
-	// output the xajax javascript. This must be called between the head tags
-	$xajax->printJavascript();
+	echo $xajax->getCssInclude();
+	echo $xajax->getJsInclude();
+	echo $xajax->getJavascript();
 ?>
-	<script type='text/javascript'>
+<script type='text/javascript'>
 		/* <![CDATA[ */
 		window.onload = function() {
 			// call the helloWorld function to populate the div on load
-			<?php $reqHelloWorldMixed->printScript(); ?>;
+			<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0); $reqHelloWorld->printScript(); ?>;
 			// call the setColor function on load
 			<?php $reqSetColor->printScript(); ?>;
 			// Call the HelloWorld class to populate the 2nd div
@@ -157,8 +170,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 	<div id="div1">&#160;</div>
 	<div>
-		<button onclick='<?php $reqHelloWorldMixed->printScript(); ?>' >Click Me</button>
-		<button onclick='<?php $reqHelloWorldAllCaps->printScript(); ?>' >CLICK ME</button>
+		<button onclick='<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0); $reqHelloWorld->printScript(); ?>' >Click Me</button>
+		<button onclick='<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 1); $reqHelloWorld->printScript(); ?>' >CLICK ME</button>
 		<select id="colorselect1" name="colorselect1"
 			onchange="<?php $reqSetColor->printScript(); ?>;">
 			<option value="black" selected="selected">Black</option>

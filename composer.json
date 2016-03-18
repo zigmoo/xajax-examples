@@ -1,6 +1,7 @@
 {
     "require": {
-        "lagdo/xajax-core": "dev-master"
+        "lagdo/xajax-core": "dev-master",
+        "lagdo/xajax-toastr": "dev-master"
     },
     "minimum-stability": "dev"
 }
