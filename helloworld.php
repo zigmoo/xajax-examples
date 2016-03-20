@@ -38,7 +38,11 @@ $xajax = new Xajax();
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'Xajax');
 $xajax->configure('javascript URI', '/test/xajax/js');
-$xajax->configure('deferScriptGeneration', false);
+// $xajax->configure('deferScriptGeneration', false);
+
+// $xajaxAppURI = '';
+// $xajaxAppDir = '';
+// $xajax->concatJavascript($xajaxAppURI, $xajaxAppDir);
 
 /*
  * Sets the following options on the Toastr library
@@ -53,6 +57,19 @@ $xajax->plugin('toastr')->setOptions(array(
 	'closeDuration' => 300,
 	'closeEasing' => 'swing',
 ));
+
+/*
+ * Sets the following options on the PgwModal
+ * - closeOnEscape = true;
+ * - closeOnBackgroundClick = true;
+ * - maxWidth = 300;
+ */
+$xajax->plugin('pgwModal')->setOptions(array(
+	'closeOnEscape' => true,
+	'closeOnBackgroundClick' => true,
+	'maxWidth' => 600,
+));
+// $xajax->plugin('pgwModal')->setInclude(false);
 
 /*
 	Function: helloWorld
@@ -109,6 +126,16 @@ class HelloWorld
 		
 		return $xResponse;
 	}
+
+	public function showDialog()
+	{
+		$xResponse = new Response();
+		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
+		$options = array('maxWidth' => 400);
+		$xResponse->pgwModal->show("Modal Dialog", "This modal dialog is powered by PgwModal!!", $buttons, $options);
+		
+		return $xResponse;
+	}
 }
 
 /*
@@ -152,19 +179,19 @@ $xajax->processRequest();
 	echo $xajax->getJavascript();
 ?>
 <script type='text/javascript'>
-		/* <![CDATA[ */
-		window.onload = function() {
-			// call the helloWorld function to populate the div on load
-			<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0); $reqHelloWorld->printScript(); ?>;
-			// call the setColor function on load
-			<?php $reqSetColor->printScript(); ?>;
-			// Call the HelloWorld class to populate the 2nd div
-			XajaxHelloWorld.sayHello(0);
-			// call the HelloWorld->setColor() method on load
-			XajaxHelloWorld.setColor(xajax.$('colorselect2').value);
-		}
-		/* ]]> */
-	</script>
+	/* <![CDATA[ */
+	window.onload = function() {
+		// call the helloWorld function to populate the div on load
+		<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0); $reqHelloWorld->printScript(); ?>;
+		// call the setColor function on load
+		<?php $reqSetColor->printScript(); ?>;
+		// Call the HelloWorld class to populate the 2nd div
+		XajaxHelloWorld.sayHello(0);
+		// call the HelloWorld->setColor() method on load
+		XajaxHelloWorld.setColor(xajax.$('colorselect2').value);
+	}
+	/* ]]> */
+</script>
 </head>
 <body style="text-align:center;">
 
@@ -192,6 +219,11 @@ $xajax->processRequest();
 			<option value="green">Green</option>
 			<option value="blue">Blue</option>
 		</select>
+	</div>
+
+	<div id="div2">&#160;</div>
+	<div>
+		<button onclick="XajaxHelloWorld.showDialog(); return false;" >Show Dialog</button>
 	</div>
 
 </body>
