@@ -2,7 +2,8 @@
     "require": {
         "lagdo/xajax-core": "dev-master",
         "lagdo/xajax-toastr": "dev-master",
-        "lagdo/xajax-pgwjs": "dev-master"
+        "lagdo/xajax-pgwjs": "dev-master",
+        "lagdo/xajax-bootstrap": "dev-master"
     },
     "minimum-stability": "dev"
 }

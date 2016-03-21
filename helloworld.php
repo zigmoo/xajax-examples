@@ -127,12 +127,22 @@ class HelloWorld
 		return $xResponse;
 	}
 
-	public function showDialog()
+	public function showPgwDialog()
 	{
 		$xResponse = new Response();
 		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
 		$options = array('maxWidth' => 400);
 		$xResponse->pgwModal->show("Modal Dialog", "This modal dialog is powered by PgwModal!!", $buttons, $options);
+		
+		return $xResponse;
+	}
+
+	public function showTbDialog()
+	{
+		$xResponse = new Response();
+		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
+		$width = 300;
+		$xResponse->bootstrap->show("Modal Dialog", "This modal dialog is powered by Twitter Bootstrap!!", $buttons, $width);
 		
 		return $xResponse;
 	}
@@ -173,6 +183,9 @@ $xajax->processRequest();
 
 <title>xajax example</title>
 <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<!-- Twitter Bootstrap -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
 <?php
 	echo $xajax->getCssInclude();
 	echo $xajax->getJsInclude();
@@ -221,9 +234,14 @@ $xajax->processRequest();
 		</select>
 	</div>
 
-	<div id="div2">&#160;</div>
+	<div id="div3">&#160;</div>
 	<div>
-		<button onclick="XajaxHelloWorld.showDialog(); return false;" >Show Dialog</button>
+		<button onclick="XajaxHelloWorld.showPgwDialog(); return false;" >Show PgwModal Dialog</button>
+	</div>
+
+	<div id="div4">&#160;</div>
+	<div>
+		<button onclick="XajaxHelloWorld.showTbDialog(); return false;" >Show Twitter Bootstrap Dialog</button>
 	</div>
 
 </body>
