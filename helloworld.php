@@ -42,7 +42,7 @@ $xajax->configure('javascript URI', '/test/xajax/js');
 
 // $xajaxAppURI = '';
 // $xajaxAppDir = '';
-// $xajax->concatJavascript($xajaxAppURI, $xajaxAppDir);
+// $xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir);
 
 /*
  * Sets the following options on the Toastr library
