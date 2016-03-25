@@ -1,12 +1,13 @@
 ## xajax-examples
 
-Examples demonstrating the Xajax library usage
+Sample codes demonstrating the Xajax library usage.
 
 #### Installation
 
-Copy the `composer.json` file into your web server directory and run the `composer update` command.
+Download the files of this repository to a directory of your web server.
+
+Cd to the directory and run the `composer update` command.
 This will install the `lagdo/xajax-core` package and its dependencies.
 
-Download the Xajax javascript files from `https://github.com/lagdo/xajax-js` and install on your web server.
-
-Before you can browse any example file, change the `javascript URI` parameter to the URL to the javascript files.
+Configure your web server to give access to the directory.
+You can then open any php example file in a browser.
