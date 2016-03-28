@@ -1,6 +1,6 @@
 <?php
 
-$loader = require (__DIR__ . '/vendor/autoload.php');
+require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
@@ -10,10 +10,16 @@ $xajax = new Xajax();
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
 
+$xajax->plugin('toastr')->setOption('closeButton', true);
+
 // Disable autoload
 $xajax->disableAutoLoad();
 
-$xajax->plugin('toastr')->setOption('closeButton', true);
+// Register the namespaces with a third-party autoloader
+$loader = new Keradus\Psr4Autoloader;
+$loader->register();
+$loader->addNamespace('App', __DIR__ . '/classes/namespace/app');
+$loader->addNamespace('Ext', __DIR__ . '/classes/namespace/ext');
 
 // Add class dirs with namespaces
 $xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');
