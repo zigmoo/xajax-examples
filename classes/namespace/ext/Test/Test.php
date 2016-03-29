@@ -34,7 +34,7 @@ class Test
 		$xResponse = new Response();
 		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
 		$width = 300;
-		$xResponse->bootstrap->show("Modal Dialog", "This modal dialog is powered by Twitter Bootstrap!!", $buttons, $width);
+		$xResponse->twbs->show("Modal Dialog", "This modal dialog is powered by Twitter Bootstrap!!", $buttons, $width);
 	
 		return $xResponse;
 	}
