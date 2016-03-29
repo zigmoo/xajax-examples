@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="/favicon.ico">
+
+	<title>Xajax Examples</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Xajax Examples</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="index.php">Home</a></li>
+					<li><a href="hello.php">Hello World Function</a></li>
+					<li><a href="class.php">Hello World Class</a></li>
+					<li><a href="merge.php">Merge Javascript</a></li>
+					<li><a href="plugins.php">Plugin Usage</a></li>
+					<li><a href="classdirs.php">Register Directories</a></li>
+					<li><a href="namespaces.php">Register Namespaces</a></li>
+					<li><a href="autoload-default.php">Default Autoloader</a></li>
+					<li><a href="autoload-composer.php">Composer Autoloader</a></li>
+					<li><a href="autoload-disabled.php">Third Party Autoloader</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h3 class="page-header">Xajax Examples</h3>
+
+				<div class="row">
+<p>
+All examples are variants of the helloword.php example in the original Xajax repository at
+<a href="https://github.com/Xajax/Xajax/blob/master/examples/helloworld.php" target="_blank">
+https://github.com/Xajax/Xajax/blob/master/examples/helloworld.php</a>.
+</p>
+
+<h5 style="margin-top:15px;"><a href="hello.php">Hello World Function</a></h5>
+<p>
+This example shows how to export a function with Xajax.
+</p>
+
+<h5 style="margin-top:15px;"><a href="class.php">Hello World Class</a></h5>
+<p>
+This example shows how to export a class with Xajax.
+</p>
+
+<h5 style="margin-top:15px;"><a href="merge.php">Merge Javascript</a></h5>
+<p>
+This example shows how to export the generated javascript code in an external file, which is then loaded into the webpage.
+</p>
+<p>
+You'll need to adapt the parameters of the call mergeJavascript() function to your webserver configuration for this example to work.
+</p>
+
+<h5 style="margin-top:15px;"><a href="plugins.php">Plugin Usage</a></h5>
+<p>
+The example shows the use of Xajax plugins, by adding javascript notifications and modal windows to the class.php
+example with the xajax-toastr, xajax-pgwjs and xajax-bootstrap packages.
+</p>
+<p>
+Using an Xajax plugin is very simple. After a plugin is installed with Composer, its automatically registers into
+the Xajax core library. It can then be accessed both in the Xajax main object, for configuration, and in the Xajax
+response object, to provide additional functionalities to the application.
+</p>
+
+<h5 style="margin-top:15px;"><a href="classdirs.php">Register Directories</a></h5>
+<p>
+This example shows how to automatically register all the PHP classes in a set of directories.
+</p>
+<p>
+The classes in this example are not namespaced, thus they all need to have different names, even if they are in different subdirs.
+</p>
+
+<h5 style="margin-top:15px;"><a href="namespaces.php">Register Namespaces</a></h5>
+<p>
+This example shows how to automatically register all the classes in a set of directories with namespaces.
+</p>
+<p>
+The namespace is prepended to the generated javascript class names, and PHP classes in different subdirs can have the same name.
+</p>
+
+<h5 style="margin-top:15px;"><a href="autoload-default.php">Default Autoloader</a></h5>
+<p>
+This example shows how to optimize Xajax requests processing with autoloading.
+</p>
+<p>
+In this example, the Xajax classes are not registered when processing a request.
+However, the Xajax library is smart enough to detect that the required class is missing, and load only the necessary file.
+</p>
+
+<h5 style="margin-top:15px;"><a href="autoload-composer.php">Composer Autoloader</a></h5>
+<p>
+This example illustrates the use of the Composer autoloader.
+</p>
+<p>
+By default, the Xajax library implements a simple autoloading mechanism by require_once'ing the corresponding PHP file
+for each missing class.
+When provided with the Composer autoloader, the Xajax library registers all directories with a namespace
+into the PSR-4 autoloader, and it registers all the classes in directories with no namespace into the classmap autoloader.
+</p>
+
+<h5 style="margin-top:15px;"><a href="autoload-disabled.php">Third Party Autoloader</a></h5>
+<p>
+In this example the autoloading is disabled in the Xajax library.
+</p>
+<p>
+A third-party autoloader is used to load the Xajax classes.
+</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
