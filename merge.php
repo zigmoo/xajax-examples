@@ -12,7 +12,7 @@ $xajax->configure('wrapperPrefix', 'Xajax');
 
 $xajaxAppURI = 'js/deferred';
 $xajaxAppDir = __DIR__ . '/js/deferred';
-$xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir);
+$xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir, true);
 
 class HelloWorld
 {
