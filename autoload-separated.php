@@ -1,36 +1,9 @@
 <?php
 
-$loader = require (__DIR__ . '/vendor/autoload.php');
+$xajax = require (__DIR__ . '/includes/autoload-separated/xajax.php');
 
-use Xajax\Xajax;
-use Xajax\Response\Response;
-
-$xajax = new Xajax();
-
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
-
-$xajax->plugin('toastr')->setOption('closeButton', true);
-$xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
-
-// Use the Composer autoloader
-$xajax->setAutoLoader($loader);
-
-// Add class dirs with namespaces
-$xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');
-$xajax->addClassDir(__DIR__ . '/classes/namespace/ext', 'Ext');
-
-// Check if there is a request.
-if($xajax->canProcessRequest())
-{
-	// When processing a request, the required class will be autoloaded
-	$xajax->processRequest();
-}
-else
-{
-	// The Xajax objects are registered only when the page is loaded
-	$xajax->registerClasses();
-}
+// Register the Xajax objects
+$xajax->registerClasses();
 
 ?>
 <!DOCTYPE html>
@@ -91,15 +64,18 @@ else
 		<div class="row">
 <?php require(__DIR__ . '/includes/menu.php') ?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h3 class="page-header">Composer Autoloader</h3>
+				<h3 class="page-header">Separated Files</h3>
 
 				<div class="row">
 					<div class="col-sm-6 col-md-6 text">
 <p>
-This example illustrates the use of the Composer autoloader.
+This example illustrates the implementation of various parts of the Xajax application in separated files.
 </p>
 <p>
-By default, the Xajax library implements a simple autoloading mechanism by require_once'ing the corresponding PHP file for each missing class. When provided with the Composer autoloader, the Xajax library registers all directories with a namespace into the PSR-4 autoloader, and it registers all the classes in directories with no namespace into the classmap autoloader.
+The creation and setup of the Xajax object is done in the includes/autoload-separated/xajax.php.
+</p>
+<p>
+The Xajax request processing is done in the includes/autoload-separated/server.php.
 </p>
 					</div>
 					<div class="col-sm-6 col-md-6 demo">
@@ -227,33 +203,48 @@ class Test
 </pre>
 					</div>
 					<div class="col-sm-6 col-md-6 xajax-code">
-<p>The classes registration</p>
+<p>The creation and setup of the Xajax object</p>
 <pre>
-$loader = require (__DIR__ . '/vendor/autoload.php');
+use Xajax\Xajax;
 
-$xajax = new Xajax();
+$loader = require (__DIR__ . '/../../vendor/autoload.php');
+
+$xajax = new Xajax('includes/autoload-separated/server.php');
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
+
+$xajax->plugin('toastr')->setOption('closeButton', true);
+$xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
 
 // Use the Composer autoloader
 $xajax->setAutoLoader($loader);
 
 // Add class dirs with namespaces
-$xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');
-$xajax->addClassDir(__DIR__ . '/classes/namespace/ext', 'Ext');
+$xajax->addClassDir(__DIR__ . '/../../classes/namespace/app', 'App');
+$xajax->addClassDir(__DIR__ . '/../../classes/namespace/ext', 'Ext');
+
+return $xajax;
+</pre>
+
+<p>The Xajax request processing</p>
+<pre>
+$xajax = require (__DIR__ . '/xajax.php');
 
 // Check if there is a request.
 if($xajax->canProcessRequest())
 {
-    // When processing a request, the required class will be autoloaded
-    $xajax->processRequest();
+	// When processing a request, the required class will be autoloaded
+	$xajax->processRequest();
 }
-else
-{
-    // The Xajax objects are registered only when the page is loaded
-    $xajax->registerClasses();
-}
+</pre>
+
+<p>The classes registration</p>
+<pre>
+$xajax = require (__DIR__ . '/includes/autoload-separated/xajax.php');
+
+// Register the Xajax objects
+$xajax->registerClasses();
 </pre>
 
 <p>The generated javascript code</p>

@@ -12,7 +12,7 @@ $xajax->configure('wrapperPrefix', 'Xajax');
 
 $xajaxAppURI = 'js/deferred';
 $xajaxAppDir = __DIR__ . '/js/deferred';
-$xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir, true);
+$xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir);
 
 class HelloWorld
 {
@@ -97,20 +97,7 @@ $xajax->processRequest();
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="hello.php">Hello World Function</a></li>
-					<li><a href="class.php">Hello World Class</a></li>
-					<li class="active"><a href="merge.php">Merge Javascript</a></li>
-					<li><a href="plugins.php">Plugin Usage</a></li>
-					<li><a href="classdirs.php">Register Directories</a></li>
-					<li><a href="namespaces.php">Register Namespaces</a></li>
-					<li><a href="autoload-default.php">Default Autoloader</a></li>
-					<li><a href="autoload-composer.php">Composer Autoloader</a></li>
-					<li><a href="autoload-disabled.php">Third Party Autoloader</a></li>
-				</ul>
-			</div>
+<?php require(__DIR__ . '/includes/menu.php') ?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h3 class="page-header">Merge Javascript</h3>
 
@@ -120,7 +107,7 @@ $xajax->processRequest();
 This example shows how to export the generated javascript code in an external file, which is then loaded into the webpage.
 </p>
 <p>
-You'll need to adapt the parameters of the call mergeJavascript() function to your webserver configuration for this example to work.
+You'll need to make sure the target directory exists and adapt the parameters of the call mergeJavascript() function to your webserver configuration for this example to work.
 </p>
 <p>
 The compression of the generated javascript code is not yet implemented.

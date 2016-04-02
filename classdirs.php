@@ -80,20 +80,7 @@ $xajax->processRequest();
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="hello.php">Hello World Function</a></li>
-					<li><a href="class.php">Hello World Class</a></li>
-					<li><a href="merge.php">Merge Javascript</a></li>
-					<li><a href="plugins.php">Plugin Usage</a></li>
-					<li class="active"><a href="classdirs.php">Register Directories</a></li>
-					<li><a href="namespaces.php">Register Namespaces</a></li>
-					<li><a href="autoload-default.php">Default Autoloader</a></li>
-					<li><a href="autoload-composer.php">Composer Autoloader</a></li>
-					<li><a href="autoload-disabled.php">Third Party Autoloader</a></li>
-				</ul>
-			</div>
+<?php require(__DIR__ . '/includes/menu.php') ?>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h3 class="page-header">Register Directories</h3>
 
