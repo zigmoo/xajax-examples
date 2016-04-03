@@ -10,9 +10,9 @@ $xajax = new Xajax();
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'Xajax');
 
-$xajaxAppURI = 'js/deferred';
 $xajaxAppDir = __DIR__ . '/js/deferred';
-$xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir);
+$xajaxAppURI = 'js/deferred';
+$xajax->mergeJavascript($xajaxAppDir, $xajaxAppURI);
 
 class HelloWorld
 {
