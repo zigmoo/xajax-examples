@@ -1,6 +1,6 @@
 <?php
 
-$loader = require (__DIR__ . '/vendor/autoload.php');
+require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
@@ -14,7 +14,7 @@ $xajax->plugin('toastr')->setOption('closeButton', true);
 $xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
 
 // Use the Composer autoloader
-$xajax->setAutoLoader($loader);
+$xajax->useComposerAutoLoader();
 
 // Add class dirs with namespaces
 $xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');
