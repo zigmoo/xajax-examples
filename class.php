@@ -69,7 +69,7 @@ $xajax->processRequest();
 		// Call the HelloWorld class to populate the 2nd div
 		XajaxHelloWorld.sayHello(0);
 		// call the HelloWorld->setColor() method on load
-		XajaxHelloWorld.setColor(xajax.$('colorselect2').value);
+		XajaxHelloWorld.setColor(xajax.$('colorselect').value);
 	}
 	/* ]]> */
 </script>
@@ -108,8 +108,8 @@ This example shows how to export a class with Xajax.
 							&nbsp;
 						</div>
 						<div style="margin:10px;">
-							<select class="form-control" id="colorselect2" name="colorselect2"
-									onchange="XajaxHelloWorld.setColor(xajax.$('colorselect2').value); return false;">
+							<select class="form-control" id="colorselect" name="colorselect"
+									onchange="XajaxHelloWorld.setColor(xajax.$('colorselect').value); return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -155,7 +155,17 @@ class HelloWorld
 </pre>
 					</div>
 					<div class="col-sm-6 col-md-6 xajax-code">
-<p>The class registration</p>
+<p>The javascript event bindings</p>
+<pre>
+// Select
+&lt;select onchange="XajaxHelloWorld.setColor(xajax.$('colorselect').value); return false;"&gt;
+&lt;/select&gt;
+// Buttons
+&lt;button onclick="XajaxHelloWorld.sayHello(0); return false;"&gt;Click Me&lt;/button&gt;
+&lt;button onclick="XajaxHelloWorld.sayHello(1); return false;"&gt;CLICK ME&lt;/button&gt;
+</pre>
+
+<p>The PHP object registrations</p>
 <pre>
 $xajax = new Xajax();
 
@@ -167,13 +177,6 @@ $xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());
 
 // Process the request, if any.
 $xajax->processRequest();
-</pre>
-
-<p>The generated javascript code</p>
-<pre>
-XajaxHelloWorld = {};
-XajaxHelloWorld.sayHello = function() {...};
-XajaxHelloWorld.setColor = function() {...};
 </pre>
 					</div>
 				</div>

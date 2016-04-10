@@ -42,12 +42,8 @@ function setColor($sColor)
 }
 
 // Register functions
-$reqHelloWorld = $xajax->register(XAJAX_FUNCTION, 'helloWorld');
-$reqHelloWorld->useSingleQuote();
-
-$reqSetColor = $xajax->register(XAJAX_FUNCTION, 'setColor');
-$reqSetColor->useSingleQuote();
-$reqSetColor->setParameter(0, XAJAX_INPUT_VALUE, 'colorselect1');
+$xajax->register(XAJAX_FUNCTION, 'helloWorld');
+$xajax->register(XAJAX_FUNCTION, 'setColor');
 
 // Process the request, if any.
 $xajax->processRequest();
@@ -79,9 +75,9 @@ $xajax->processRequest();
 	/* <![CDATA[ */
 	window.onload = function() {
 		// call the helloWorld function to populate the div on load
-		<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0); $reqHelloWorld->printScript(); ?>;
+		xajax_helloWorld(0);
 		// call the setColor function on load
-		<?php $reqSetColor->printScript(); ?>;
+		xajax_setColor(xajax.$('colorselect').value);
 	}
 	/* ]]> */
 </script>
@@ -120,8 +116,8 @@ This example shows how to export a function with Xajax.
 							&nbsp;
 						</div>
 						<div style="margin:10px;">
-							<select class="form-control" id="colorselect1" name="colorselect1"
-									onchange="<?php $reqSetColor->printScript(); ?>; return false;">
+							<select class="form-control" id="colorselect" name="colorselect"
+									onchange="xajax_setColor(xajax.$('colorselect').value); return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -129,10 +125,8 @@ This example shows how to export a function with Xajax.
 							</select>
 						</div>
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 0);
-								$reqHelloWorld->printScript(); ?>; return false;" >Click Me</button>
-							<button class="btn btn-primary" onclick="<?php $reqHelloWorld->setParameter(0, XAJAX_JS_VALUE, 1);
-								$reqHelloWorld->printScript(); ?>; return false;" >CLICK ME</button>
+							<button class="btn btn-primary" onclick="xajax_helloWorld(0); return false;" >Click Me</button>
+							<button class="btn btn-primary" onclick="xajax_helloWorld(1); return false;" >CLICK ME</button>
 						</div>
 					</div>
 				</div>
@@ -166,7 +160,17 @@ function setColor($sColor)
 </pre>
 					</div>
 					<div class="col-sm-6 col-md-6 xajax-code">
-<p>The functions registration</p>
+<p>The javascript event bindings</p>
+<pre>
+// Select
+&lt;select onchange="xajax_setColor(xajax.$('colorselect').value); return false;"&gt;
+&lt;/select&gt;
+// Buttons
+&lt;button onclick="xajax_helloWorld(0); return false;"&gt;Click Me&lt;/button&gt;
+&lt;button onclick="xajax_helloWorld(1); return false;"&gt;CLICK ME&lt;/button&gt;
+</pre>
+
+<p>The PHP function registrations</p>
 <pre>
 $xajax = new Xajax();
 
@@ -174,17 +178,11 @@ $xajax = new Xajax();
 $xajax->configure('wrapperPrefix', 'xajax_');
 
 // Register functions
-$reqHelloWorld = $xajax->register(XAJAX_FUNCTION, 'helloWorld');
-$reqSetColor = $xajax->register(XAJAX_FUNCTION, 'setColor');
+$xajax->register(XAJAX_FUNCTION, 'helloWorld');
+$xajax->register(XAJAX_FUNCTION, 'setColor');
 
 // Process the request, if any.
 $xajax->processRequest();
-</pre>
-
-<p>The generated javascript code</p>
-<pre>
-xajax_helloWorld = function() {...};
-xajax_setColor = function() {...};
 </pre>
 					</div>
 				</div>

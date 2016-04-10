@@ -234,7 +234,20 @@ class HelloWorld
 </pre>
 					</div>
 					<div class="col-sm-6 col-md-6 xajax-code">
-<p>The class registration</p>
+<p>The javascript event bindings</p>
+<pre>
+// Select
+&lt;select onchange="XajaxHelloWorld.setColor(xajax.$('colorselect').value); return false;"&gt;
+&lt;/select&gt;
+// Buttons
+&lt;button onclick="XajaxHelloWorld.sayHello(0); return false;"&gt;Click Me&lt;/button&gt;
+&lt;button onclick="XajaxHelloWorld.sayHello(1); return false;"&gt;CLICK ME&lt;/button&gt;
+
+&lt;button onclick="XajaxHelloWorld.showPgwDialog(); return false;"&gt;Show PgwModal Dialog&lt;/button&gt;
+&lt;button onclick="XajaxHelloWorld.showTbDialog(); return false;"&gt;Show Twitter Bootstrap Dialog&lt;/button&gt;
+</pre>
+
+<p>The PHP object registrations</p>
 <pre>
 $xajax = new Xajax();
 
@@ -260,15 +273,6 @@ $xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());
 
 // Process the request, if any.
 $xajax->processRequest();
-</pre>
-
-<p>The generated javascript code</p>
-<pre>
-XajaxHelloWorld = {};
-XajaxHelloWorld.sayHello = function() {...};
-XajaxHelloWorld.setColor = function() {...};
-XajaxHelloWorld.showPgwDialog = function() {...};
-XajaxHelloWorld.showTbDialog = function() {...};
 </pre>
 					</div>
 				</div>

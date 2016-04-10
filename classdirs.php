@@ -214,7 +214,29 @@ class Ext
 </pre>
 					</div>
 					<div class="col-sm-6 col-md-6 xajax-code">
-<p>The classes registration</p>
+<p>The javascript event bindings</p>
+<pre>
+// Select
+&lt;select onchange="Test.App.setColor(xajax.$('colorselect').value); return false;"&gt;
+&lt;/select&gt;
+
+// Buttons
+&lt;button onclick="Test.App.sayHello(0); return false;"&gt;Click Me&lt;/button&gt;
+&lt;button onclick="Test.App.sayHello(1); return false;"&gt;CLICK ME&lt;/button&gt;
+
+// Select
+&lt;select onchange="Test.Ext.setColor(xajax.$('colorselect').value); return false;"&gt;
+&lt;/select&gt;
+
+// Buttons
+&lt;button onclick="Test.Ext.sayHello(0); return false;"&gt;Click Me&lt;/button&gt;
+&lt;button onclick="Test.Ext.sayHello(1); return false;"&gt;CLICK ME&lt;/button&gt;
+
+&lt;button onclick="Test.App.showDialog(); return false;"&gt;Show PgwModal Dialog&lt;/button&gt;
+&lt;button onclick="Test.Ext.showDialog(); return false;"&gt;Show Twitter Bootstrap Dialog&lt;/button&gt;
+</pre>
+
+<p>The PHP object registrations</p>
 <pre>
 $xajax = new Xajax();
 
@@ -230,19 +252,6 @@ $xajax->registerClasses();
 
 // Process the request, if any.
 $xajax->processRequest();
-</pre>
-
-<p>The generated javascript code</p>
-<pre>
-Test = {};
-Test.App = {};
-Test.App.sayHello = function() {...};
-Test.App.setColor = function() {...};
-Test.App.showDialog = function() {...};
-Test.Ext = {};
-Test.Ext.sayHello = function() {...};
-Test.Ext.setColor = function() {...};
-Test.Ext.showDialog = function() {...};
 </pre>
 					</div>
 				</div>
