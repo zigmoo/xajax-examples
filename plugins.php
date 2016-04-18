@@ -4,6 +4,7 @@ require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 $xajax = new Xajax();
 
@@ -117,9 +118,9 @@ $xajax->processRequest();
 	/* <![CDATA[ */
 	window.onload = function() {
 		// Call the HelloWorld class to populate the 2nd div
-		XajaxHelloWorld.sayHello(0);
+		<?php echo xr::make('HelloWorld.sayHello', 0) ?>;
 		// call the HelloWorld->setColor() method on load
-		XajaxHelloWorld.setColor(xajax.$('colorselect2').value);
+		<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>;
 	}
 	/* ]]> */
 </script>
@@ -161,8 +162,8 @@ Using an Xajax plugin is very simple. After a plugin is installed with Composer,
 							&nbsp;
 						</div>
 						<div style="margin:10px;">
-							<select class="form-control" id="colorselect2" name="colorselect2"
-									onchange="XajaxHelloWorld.setColor(xajax.$('colorselect2').value); return false;">
+							<select class="form-control" id="colorselect" name="colorselect"
+									onchange="<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>; return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -170,13 +171,13 @@ Using an Xajax plugin is very simple. After a plugin is installed with Composer,
 							</select>
 						</div>
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(0); return false;" >Click Me</button>
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(1); return false;" >CLICK ME</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 0) ?>; return false;" >Click Me</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 1) ?>; return false;" >CLICK ME</button>
 						</div>
 
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.showPgwDialog(); return false;" >Show PgwModal Dialog</button>
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.showTbDialog(); return false;" >Show Twitter Bootstrap Dialog</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.showPgwDialog') ?>; return false;" >Show PgwModal Dialog</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.showTbDialog') ?>; return false;" >Show Twitter Bootstrap Dialog</button>
 						</div>
 					</div>
 				</div>

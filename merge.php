@@ -4,6 +4,7 @@ require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 $xajax = new Xajax();
 
@@ -71,9 +72,9 @@ $xajax->processRequest();
 	/* <![CDATA[ */
 	window.onload = function() {
 		// Call the HelloWorld class to populate the 2nd div
-		XajaxHelloWorld.sayHello(0);
+		<?php echo xr::make('HelloWorld.sayHello', 0) ?>;
 		// call the HelloWorld->setColor() method on load
-		XajaxHelloWorld.setColor(xajax.$('colorselect').value);
+		<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>;
 	}
 	/* ]]> */
 </script>
@@ -119,7 +120,7 @@ The compression of the generated javascript code is not yet implemented.
 						</div>
 						<div style="margin:10px;">
 							<select class="form-control" id="colorselect" name="colorselect"
-								onchange="XajaxHelloWorld.setColor(xajax.$('colorselect').value); return false;">
+								onchange="<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>; return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -127,8 +128,8 @@ The compression of the generated javascript code is not yet implemented.
 							</select>
 						</div>
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(0); return false;" >Click Me</button>
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(1); return false;" >CLICK ME</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 0) ?>; return false;" >Click Me</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 1) ?>; return false;" >CLICK ME</button>
 						</div>
 					</div>
 				</div>

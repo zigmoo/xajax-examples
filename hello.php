@@ -4,6 +4,7 @@ require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 $xajax = new Xajax();
 
@@ -75,9 +76,9 @@ $xajax->processRequest();
 	/* <![CDATA[ */
 	window.onload = function() {
 		// call the helloWorld function to populate the div on load
-		xajax_helloWorld(0);
+		<?php echo xr::make('helloWorld', 0) ?>;
 		// call the setColor function on load
-		xajax_setColor(xajax.$('colorselect').value);
+		<?php echo xr::make('setColor', xr::select('colorselect')) ?>;
 	}
 	/* ]]> */
 </script>
@@ -117,7 +118,7 @@ This example shows how to export a function with Xajax.
 						</div>
 						<div style="margin:10px;">
 							<select class="form-control" id="colorselect" name="colorselect"
-									onchange="xajax_setColor(xajax.$('colorselect').value); return false;">
+									onchange="<?php echo xr::make('setColor', xr::select('colorselect')) ?>; return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -125,8 +126,8 @@ This example shows how to export a function with Xajax.
 							</select>
 						</div>
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="xajax_helloWorld(0); return false;" >Click Me</button>
-							<button class="btn btn-primary" onclick="xajax_helloWorld(1); return false;" >CLICK ME</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('helloWorld', 0) ?>; return false;" >Click Me</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('helloWorld', 1) ?>; return false;" >CLICK ME</button>
 						</div>
 					</div>
 				</div>

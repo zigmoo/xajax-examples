@@ -4,6 +4,7 @@ require (__DIR__ . '/vendor/autoload.php');
 
 use Xajax\Xajax;
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 $xajax = new Xajax();
 
@@ -67,9 +68,9 @@ $xajax->processRequest();
 	/* <![CDATA[ */
 	window.onload = function() {
 		// Call the HelloWorld class to populate the 2nd div
-		XajaxHelloWorld.sayHello(0);
+		<?php echo xr::make('HelloWorld.sayHello', 0) ?>;
 		// call the HelloWorld->setColor() method on load
-		XajaxHelloWorld.setColor(xajax.$('colorselect').value);
+		<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>;
 	}
 	/* ]]> */
 </script>
@@ -117,8 +118,8 @@ This example shows how to export a class with Xajax.
 							</select>
 						</div>
 						<div style="margin:10px;">
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(0); return false;" >Click Me</button>
-							<button class="btn btn-primary" onclick="XajaxHelloWorld.sayHello(1); return false;" >CLICK ME</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 0) ?>; return false;" >Click Me</button>
+							<button class="btn btn-primary" onclick="<?php echo xr::make('HelloWorld.sayHello', 1) ?>; return false;" >CLICK ME</button>
 						</div>
 					</div>
 				</div>

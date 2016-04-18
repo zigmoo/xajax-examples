@@ -3,9 +3,13 @@
 namespace Ext\Test;
 
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 class Test
 {
+	use \Xajax\Request\FactoryTrait;
+	use \Xajax\Response\FactoryTrait;
+
 	public function sayHello($isCaps)
 	{
 		if ($isCaps)
@@ -13,29 +17,26 @@ class Test
 		else
 			$text = 'Hello World!';
 	
-		$xResponse = new Response();
-		$xResponse->assign('div2', 'innerHTML', $text);
-		$xResponse->toastr->success("div2 text is now $text");
+		$this->response->assign('div2', 'innerHTML', $text);
+		$this->response->toastr->success("div2 text is now $text, after calling " . $this->request('sayHello', $isCaps));
 	
-		return $xResponse;
+		return $this->response;
 	}
 	
 	public function setColor($sColor)
 	{
-		$xResponse = new Response();
-		$xResponse->assign('div2', 'style.color', $sColor);
-		$xResponse->toastr->success("div2 color is now $sColor");
+		$this->response->assign('div2', 'style.color', $sColor);
+		$this->response->toastr->success("div2 color is now $sColor");
 	
-		return $xResponse;
+		return $this->response;
 	}
 	
 	public function showDialog()
 	{
-		$xResponse = new Response();
 		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
 		$width = 300;
-		$xResponse->twbs->show("Modal Dialog", "This modal dialog is powered by Twitter Bootstrap!!", $buttons, $width);
+		$this->response->twbs->show("Modal Dialog", "This modal dialog is powered by Twitter Bootstrap!!", $buttons, $width);
 	
-		return $xResponse;
+		return $this->response;
 	}
 }

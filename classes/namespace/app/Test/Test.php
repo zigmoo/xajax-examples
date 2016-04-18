@@ -3,9 +3,13 @@
 namespace App\Test;
 
 use Xajax\Response\Response;
+use Xajax\Request\Factory as xr;
 
 class Test
 {
+	use \Xajax\Request\FactoryTrait;
+	use \Xajax\Response\FactoryTrait;
+
 	public function sayHello($isCaps)
 	{
 		if ($isCaps)
@@ -13,29 +17,26 @@ class Test
 		else
 			$text = 'Hello World!';
 	
-		$xResponse = new Response();
-		$xResponse->assign('div1', 'innerHTML', $text);
-		$xResponse->toastr->success("div1 text is now $text");
+		$this->response->assign('div1', 'innerHTML', $text);
+		$this->response->toastr->success("div1 text is now $text, after calling " . $this->request('sayHello', $isCaps));
 	
-		return $xResponse;
+		return $this->response;
 	}
 	
 	public function setColor($sColor)
 	{
-		$xResponse = new Response();
-		$xResponse->assign('div1', 'style.color', $sColor);
-		$xResponse->toastr->success("div1 color is now $sColor");
+		$this->response->assign('div1', 'style.color', $sColor);
+		$this->response->toastr->success("div1 color is now $sColor");
 	
-		return $xResponse;
+		return $this->response;
 	}
 	
 	public function showDialog()
 	{
-		$xResponse = new Response();
 		$buttons = array(array('title' => 'Close', 'class' => 'btn', 'click' => 'close'));
 		$options = array('maxWidth' => 400);
-		$xResponse->pgwModal->show("Modal Dialog", "This modal dialog is powered by PgwModal!!", $buttons, $options);
+		$this->response->pgwModal->show("Modal Dialog", "This modal dialog is powered by PgwModal!!", $buttons, $options);
 	
-		return $xResponse;
+		return $this->response;
 	}
 }
