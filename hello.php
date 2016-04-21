@@ -6,7 +6,7 @@ use Xajax\Xajax;
 use Xajax\Response\Response;
 use Xajax\Request\Factory as xr;
 
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'xajax_');
@@ -173,7 +173,7 @@ function setColor($sColor)
 
 <p>The PHP function registrations</p>
 <pre>
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'xajax_');

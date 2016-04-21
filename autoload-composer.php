@@ -5,7 +5,7 @@ require (__DIR__ . '/vendor/autoload.php');
 use Xajax\Xajax;
 use Xajax\Response\Response;
 
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
@@ -253,7 +253,7 @@ class Test
 <pre>
 $loader = require (__DIR__ . '/vendor/autoload.php');
 
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');

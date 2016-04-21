@@ -6,7 +6,7 @@ use Xajax\Xajax;
 use Xajax\Response\Response;
 use Xajax\Request\Factory as xr;
 
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'Xajax');
@@ -250,7 +250,7 @@ class HelloWorld
 
 <p>The PHP object registrations</p>
 <pre>
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', 'Xajax');

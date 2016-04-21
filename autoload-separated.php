@@ -1,6 +1,10 @@
 <?php
 
-$xajax = require (__DIR__ . '/includes/autoload-separated/xajax.php');
+require (__DIR__ . '/includes/autoload-separated/xajax.php');
+
+use Xajax\Xajax;
+
+$xajax = Xajax::getInstance();
 
 // Register the Xajax objects
 $xajax->registerClasses();

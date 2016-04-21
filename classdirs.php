@@ -5,7 +5,7 @@ require (__DIR__ . '/vendor/autoload.php');
 use Xajax\Xajax;
 use Xajax\Response\Response;
 
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
@@ -238,7 +238,7 @@ class Ext
 
 <p>The PHP object registrations</p>
 <pre>
-$xajax = new Xajax();
+$xajax = Xajax::getInstance();
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');

@@ -1,11 +1,13 @@
 <?php
 
+require (__DIR__ . '/../../vendor/autoload.php');
+
 use Xajax\Xajax;
 use Xajax\Response\Response;
 
-$loader = require (__DIR__ . '/../../vendor/autoload.php');
+$xajax = Xajax::getInstance();
 
-$xajax = new Xajax('includes/autoload-separated/server.php');
+$xajax->configure('requestURI', 'includes/autoload-separated/server.php');
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
