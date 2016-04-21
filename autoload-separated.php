@@ -231,11 +231,12 @@ class Test
 
 <p>The creation and setup of the Xajax object</p>
 <pre>
+require (__DIR__ . '/../../vendor/autoload.php');
+
 use Xajax\Xajax;
 
-$loader = require (__DIR__ . '/../../vendor/autoload.php');
-
-$xajax = new Xajax('includes/autoload-separated/server.php');
+$xajax = Xajax::getInstance();
+$xajax->configure('requestURI', 'includes/autoload-separated/server.php');
 
 // $xajax->configure('debug', true);
 $xajax->configure('wrapperPrefix', '');
