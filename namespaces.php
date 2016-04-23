@@ -7,11 +7,11 @@ use Xajax\Response\Response;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', '');
 
-$xajax->plugin('toastr')->setOption('closeButton', true);
-$xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
+$xajax->setOption('toastr.options.closeButton', true);
+$xajax->setOption('toastr.options.positionClass', 'toast-bottom-left');
 
 // Add class dirs with namespaces
 $xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');
@@ -244,8 +244,8 @@ class Test
 <pre>
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', '');
 
 // Add class dirs with namespaces
 $xajax->addClassDir(__DIR__ . '/classes/namespace/app', 'App');

@@ -8,8 +8,8 @@ use Xajax\Request\Factory as xr;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
 $xajaxAppDir = __DIR__ . '/js/deferred';
 $xajaxAppURI = 'js/deferred';
@@ -180,8 +180,8 @@ class HelloWorld
 <pre>
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
 $xajaxAppURI = 'js/deferred';
 $xajaxAppDir = __DIR__ . '/js/deferred';

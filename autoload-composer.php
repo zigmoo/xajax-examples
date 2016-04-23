@@ -7,11 +7,11 @@ use Xajax\Response\Response;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', '');
 
-$xajax->plugin('toastr')->setOption('closeButton', true);
-$xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
+$xajax->setOption('toastr.options.closeButton', true);
+$xajax->setOption('toastr.options.positionClass', 'toast-bottom-left');
 
 // Use the Composer autoloader
 $xajax->useComposerAutoLoader();
@@ -255,8 +255,8 @@ $loader = require (__DIR__ . '/vendor/autoload.php');
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', '');
 
 // Use the Composer autoloader
 $xajax->setAutoLoader($loader);

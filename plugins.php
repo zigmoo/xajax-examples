@@ -8,8 +8,8 @@ use Xajax\Request\Factory as xr;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
 /*
  * Sets the following options on the Toastr library
@@ -18,12 +18,12 @@ $xajax->configure('wrapperPrefix', 'Xajax');
  * - toastr.options.closeDuration = 300;
  * - toastr.options.closeEasing = 'swing';
  */
-$xajax->plugin('toastr')->setOptions(array(
-	'closeButton' => true,
-	'closeMethod' => 'fadeOut',
-	'closeDuration' => 300,
-	'closeEasing' => 'swing',
-	'positionClass' => 'toast-bottom-left',
+$xajax->setOptions(array(
+	'toastr.options.closeButton' => true,
+	'toastr.options.closeMethod' => 'fadeOut',
+	'toastr.options.closeDuration' => 300,
+	'toastr.options.closeEasing' => 'swing',
+	'toastr.options.positionClass' => 'toast-bottom-left',
 ));
 
 /*
@@ -32,10 +32,10 @@ $xajax->plugin('toastr')->setOptions(array(
  * - closeOnBackgroundClick = true;
  * - maxWidth = 300;
 */
-$xajax->plugin('pgwModal')->setOptions(array(
-	'closeOnEscape' => true,
-	'closeOnBackgroundClick' => true,
-	'maxWidth' => 600,
+$xajax->setOptions(array(
+	'pgw.modal.options.closeOnEscape' => true,
+	'pgw.modal.options.closeOnBackgroundClick' => true,
+	'pgw.modal.options.maxWidth' => 600,
 ));
 // $xajax->plugin('pgwModal')->setInclude(false);
 
@@ -252,21 +252,21 @@ class HelloWorld
 <pre>
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
-$xajax->plugin('toastr')->setOptions(array(
-    'closeButton' => true,
-    'closeMethod' => 'fadeOut',
-    'closeDuration' => 300,
-    'closeEasing' => 'swing',
-    'positionClass' => 'toast-bottom-left',
+$xajax->setOptions(array(
+    'toastr.options.closeButton' => true,
+    'toastr.options.closeMethod' => 'fadeOut',
+    'toastr.options.closeDuration' => 300,
+    'toastr.options.closeEasing' => 'swing',
+    'toastr.options.positionClass' => 'toast-bottom-left',
 ));
 
-$xajax->plugin('pgwModal')->setOptions(array(
-    'closeOnEscape' => true,
-    'closeOnBackgroundClick' => true,
-    'maxWidth' => 600,
+$xajax->setOptions(array(
+    'pgw.modal.options.closeOnEscape' => true,
+    'pgw.modal.options.closeOnBackgroundClick' => true,
+    'pgw.modal.options.maxWidth' => 600,
 ));
 
 // Register object

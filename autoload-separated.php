@@ -238,11 +238,11 @@ use Xajax\Xajax;
 $xajax = Xajax::getInstance();
 $xajax->configure('requestURI', 'includes/autoload-separated/server.php');
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', '');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', '');
 
-$xajax->plugin('toastr')->setOption('closeButton', true);
-$xajax->plugin('toastr')->setOption('positionClass', 'toast-bottom-left');
+$xajax->setOption('toastr.options.closeButton', true);
+$xajax->setOption('toastr.options.positionClass', 'toast-bottom-left');
 
 // Use the Composer autoloader
 $xajax->setAutoLoader($loader);

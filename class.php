@@ -8,8 +8,8 @@ use Xajax\Request\Factory as xr;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
 class HelloWorld
 {
@@ -110,7 +110,7 @@ This example shows how to export a class with Xajax.
 						</div>
 						<div style="margin:10px;">
 							<select class="form-control" id="colorselect" name="colorselect"
-									onchange="XajaxHelloWorld.setColor(xajax.$('colorselect').value); return false;">
+									onchange="<?php echo xr::make('HelloWorld.setColor', xr::select('colorselect')) ?>; return false;">
 								<option value="black" selected="selected">Black</option>
 								<option value="red">Red</option>
 								<option value="green">Green</option>
@@ -170,8 +170,8 @@ class HelloWorld
 <pre>
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'Xajax');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'Xajax');
 
 // Register object
 $xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());

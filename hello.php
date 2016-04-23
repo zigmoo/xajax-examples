@@ -8,8 +8,8 @@ use Xajax\Request\Factory as xr;
 
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'xajax_');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.function', 'xajax_');
 
 /*
 	Function: helloWorld
@@ -175,8 +175,8 @@ function setColor($sColor)
 <pre>
 $xajax = Xajax::getInstance();
 
-// $xajax->configure('debug', true);
-$xajax->configure('wrapperPrefix', 'xajax_');
+// $xajax->setOption('core.debug.on', true);
+$xajax->setOption('core.prefix.class', 'xajax_');
 
 // Register functions
 $xajax->register(XAJAX_FUNCTION, 'helloWorld');
