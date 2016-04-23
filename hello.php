@@ -179,8 +179,8 @@ $xajax = Xajax::getInstance();
 $xajax->setOption('core.prefix.class', 'xajax_');
 
 // Register functions
-$xajax->register(Xajax::FUNCTION, 'helloWorld');
-$xajax->register(Xajax::FUNCTION, 'setColor');
+$xajax->register(Xajax::USER_FUNCTION, 'helloWorld');
+$xajax->register(Xajax::USER_FUNCTION, 'setColor');
 
 // Process the request, if any.
 $xajax->processRequest();
