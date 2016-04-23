@@ -40,7 +40,7 @@ class HelloWorld
 }
 
 // Register object
-$xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());
+$xajax->register(Xajax::CALLABLE_OBJECT, new HelloWorld());
 
 // Process the request, if any.
 $xajax->processRequest();
@@ -188,7 +188,7 @@ $xajaxAppDir = __DIR__ . '/js/deferred';
 $xajax->mergeJavascript($xajaxAppURI, $xajaxAppDir);
 
 // Register object
-$xajax->register(XAJAX_CALLABLE_OBJECT, new HelloWorld());
+$xajax->register(Xajax::CALLABLE_OBJECT, new HelloWorld());
 
 // Process the request, if any.
 $xajax->processRequest();
