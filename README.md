@@ -9,7 +9,8 @@ Download the files of this repository to a directory of your web server.
 Cd to the directory and run the `composer update` command.
 This will install the `lagdo/xajax-core` package and its dependencies.
 
-Configure your web server to give access to the directory.
+Configure your web server to give access to the `lagdo/xajax-core` directory. 
+Make sure your web server has proper permissions to create the `lagdo/ajax-core/templates/cache` directory, or the examples will appear to fail! 
 You can then open any php example file in a browser.
 
 #### Examples
